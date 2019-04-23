@@ -5,6 +5,11 @@ module QuoteQueue
     def QuoteQueue.respond(boi, event)
         event.respond('Pending quote requests:')
         reqs_for_this_mod = QuoteQueue.requests_for_mod(boi, event.user)
+        if reqs_for_this_mod.empty?
+            event.send_embed {|embed| embed.description = 'none'}
+            return 
+        end
+
         reqs_for_this_mod.sort {|r1, r2| r1[1][:timestamp] - r2[1][:timestamp]}.each do |req|
             attach = req[1][:event].message.attachments
             event.send_embed do |embed|
