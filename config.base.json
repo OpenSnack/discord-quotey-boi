@@ -1,6 +1,7 @@
 {
     "prefix": "q!",
+    "post_channel": "quote-wall",
 
-    "embed_mods": "",
-    "text_mods": ""
+    "embed_mod_roles": [],
+    "text_mod_roles": []
 }

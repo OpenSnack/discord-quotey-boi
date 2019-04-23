@@ -1,7 +1,6 @@
 require 'discordrb'
 require 'json'
-require_relative 'events/add'
-require_relative 'events/queue'
+Dir["./events/*.rb"].each {|file| require file }
 
 class Discordrb::Commands::CommandBot
     def config=(json)
@@ -28,8 +27,8 @@ boi = Discordrb::Commands::CommandBot.new token: ENV['QUOTEYBOI_TOKEN'], applica
 boi.config = config
 boi.requests = requests
 
+boi.command(:add) {|event| AddQuote.add(boi, event)}
+boi.pm(start_with: "#{config['prefix']}approve") {|event| ApproveQuote.approve(boi, event)}
 boi.pm(content: "#{config['prefix']}queue") {|event| QuoteQueue.respond(boi, event)}
-
-boi.command(:add) {|event| requests[AddQuote.add(boi, event)] = {event: event, timestamp: Time.now}}
 
 boi.run

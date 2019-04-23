@@ -16,7 +16,7 @@ module AddQuote
             AddQuote.approve_request_embed(user, event, quote_id)
         end
 
-        return quote_id
+        boi.requests[quote_id] = {event: event, timestamp: Time.now}
     end
 
     def AddQuote.approve_request_embed(mod, event, quote_id)
