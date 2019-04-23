@@ -29,6 +29,7 @@ boi.requests = requests
 
 boi.command(:add) {|event| AddQuote.add(boi, event)}
 boi.pm(start_with: "#{config['prefix']}approve") {|event| ApproveQuote.approve(boi, event)}
+boi.pm(start_with: "#{config['prefix']}reject") {|event| RejectQuote.reject(boi, event)}
 boi.pm(content: "#{config['prefix']}queue") {|event| QuoteQueue.respond(boi, event)}
 
 boi.run
