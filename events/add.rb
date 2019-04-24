@@ -20,7 +20,7 @@ module AddQuote
     end
 
     def AddQuote.approve_request_embed(mod, event, quote_id)
-        parts = extract_quote_parts(event.message.content)
+        parts = extract_quote_parts(event.message.content.split[1..-1].join(' '))
         author = AddQuote.get_author(parts[:name], event.message.mentions)
         attach = event.message.attachments
 

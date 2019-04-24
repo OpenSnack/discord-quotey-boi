@@ -5,10 +5,10 @@ def auth_user(boi, user, req_event)
 end
 
 def extract_quote_parts(str)
-    command, quote, *name = str.split(/\s(?=(?:[^"]|"[^"]*")*$)/)
+    quote, *name = str.split(/\s(?=(?:[^"]|"[^"]*")*$)/)
     name = name.join(' ').sub(/^-/,'').strip
-    quote = quote [1...-1]
-    {command: command, name: name, quote: quote}
+    quote = quote[1...-1]
+    {name: name, quote: quote}
 end
 
 def full_quote(event)

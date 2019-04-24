@@ -1,3 +1,5 @@
+require 'discordrb'
+
 class CommandBoi < Discordrb::Commands::CommandBot
     attr_reader :config, :requests, :all_quotes
 
@@ -7,6 +9,7 @@ class CommandBoi < Discordrb::Commands::CommandBot
         @config = attributes[:config]
         @requests = {}
         @all_quotes = {}
+        @all_quotes_by_user = {}
 
         self.ready { load_channels }
     end
